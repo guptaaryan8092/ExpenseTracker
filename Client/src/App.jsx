@@ -25,11 +25,11 @@ function App() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
         >
-          <h1 className="text-3xl font-extrabold text-amber-400 dark:text-amber-300 text-center">
+          <h1 className="text-3xl font-extrabold text-amber-400 dark:text-amber-300 text-center flex-1">
             💰 Expense Tracker
           </h1>
+          <ThemeToggle className="ml-4" />
         </motion.div>
-          <ThemeToggle />
 
         <TransactionForm onAdd={triggerReload} />
         <ExportCSV />

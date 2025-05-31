@@ -27,7 +27,7 @@ const ThemeToggle = () => {
       className="p-2 rounded-full bg-gray-200 dark:bg-gray-800 text-black dark:text-white shadow transition"
       title="Toggle Theme"
     >
-      {isDark ? <Sun size={20} /> : <Moon size={20} />}
+      {isDark ? <Sun size={25} /> : <Moon size={25} />}
     </button>
   );
 };
