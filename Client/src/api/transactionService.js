@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'https://expensetracker-server-2i58.onrender.com/api/transactions';
+const API_URL = import.meta.env.VITE_API_URL;
 
 // Get all transactions
 
