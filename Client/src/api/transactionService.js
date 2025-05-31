@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5000/api/transactions';
+const API_URL = 'https://expensetracker-server-2i58.onrender.com/api/transactions';
 
 // Get all transactions
 
