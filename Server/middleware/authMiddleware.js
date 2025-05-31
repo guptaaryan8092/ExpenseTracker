@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const JWT_SECRET = 'your_jwt_secret_key'; // use env in production
+const JWT_SECRET = 'your_jwt_secret_key'; 
 
 const authMiddleware = (req, res, next) => {
   const token = req.header('Authorization')?.split(' ')[1]; // Bearer token
