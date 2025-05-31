@@ -1,10 +1,9 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { Moon, Sun } from "lucide-react"; // You can use Heroicons or any
+import { Moon, Sun } from "lucide-react";
 
 const ThemeToggle = () => {
   const [isDark, setIsDark] = useState(() => {
-    // Try to load from localStorage or use system preference
     return localStorage.getItem("theme") === "dark" ||
       (!localStorage.getItem("theme") &&
         window.matchMedia("(prefers-color-scheme: dark)").matches);
