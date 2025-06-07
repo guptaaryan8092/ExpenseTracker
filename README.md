@@ -53,19 +53,19 @@ A full-stack web application that allows users to track and manage their daily, 
 - ✅ Data stored securely in MongoDB
 
 ---
-##📂 Folder Structure
-ExpenseTracker/
-├── client/         # React Frontend
-│   └── src/
-│       ├── components/
-│       ├── pages/
-│       └── App.js
-├── server/         # Express Backend
-│   ├── controllers/
-│   ├── models/
-│   ├── routes/
-│   └── server.js
-└── README.md
+## 📂 Folder Structure
+- ExpenseTracker/
+- ├── client/         # React Frontend
+- │   └── src/
+- │       ├── components/
+- │       ├── pages/
+- │       └── App.js
+- ├── server/         # Express Backend
+- │   ├── controllers/
+- │   ├── models/
+- │   ├── routes/
+- │   └── server.js
+- └── README.md
 
 ---
 
