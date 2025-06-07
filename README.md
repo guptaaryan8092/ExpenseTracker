@@ -14,7 +14,7 @@ A full-stack web application that allows users to track and manage their daily, 
 
 | Dashboard View | Chart Visualization |
 |----------------|---------------------|
-| ![Dashboard](./public/projects/ExpenseTracker/expense1.png) | ![Chart](./public/projects/ExpenseTracker/expense2.png) |
+| ![Dashboard](./public/ExpenseTracker/expense1.png) | ![Chart](./public/ExpenseTracker/expense2.png) |
 
 ---
 
