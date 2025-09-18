@@ -6,4 +6,13 @@ export default defineConfig({
   plugins: [
     tailwindcss(),
   ],
+  server: {
+    proxy: {
+      '/api': {
+        target: 'https://wealth-wave-tracker-server.vercel.app',
+        changeOrigin: true,
+        secure: true,
+      },
+    },
+  },
 })
