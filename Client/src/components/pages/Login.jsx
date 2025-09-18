@@ -21,7 +21,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    
+
     try {
       const response = await fetch(`${API_URL}/api/auth/login`, {
         method: 'POST',
@@ -31,17 +31,40 @@ const Login = () => {
         body: JSON.stringify(form),
       });
 
-      const data = await response.json();
-      
+      const responseText = await response.text();
+
       if (response.ok) {
-        login(data.token);
-        navigate('/dashboard');
+        try {
+          const data = JSON.parse(responseText);
+          if (data.token) {
+            login(data.token, data.user); // Pass both token and user data
+            navigate('/dashboard');
+          } else {
+            setMsg('Login successful but no token received');
+          }
+        } catch (jsonError) {
+          setMsg('Login response format error');
+        }
       } else {
-        setMsg(data.msg || 'Login failed');
+        // Handle error responses
+        let errorMessage = 'Login failed';
+        try {
+          const data = JSON.parse(responseText);
+          errorMessage = data.msg || data.message || errorMessage;
+        } catch {
+          if (response.status === 401) {
+            errorMessage = 'Invalid username or password';
+          } else if (response.status === 500) {
+            errorMessage = 'Server error. Please try again later.';
+          } else {
+            errorMessage = `Login failed (${response.status})`;
+          }
+        }
+        setMsg(errorMessage);
       }
     } catch (err) {
-      setMsg('Login failed. Please try again.');
       console.error('Login error:', err);
+      setMsg('Network error. Please check your connection and try again.');
     } finally {
       setLoading(false);
     }

@@ -1,8 +1,11 @@
-// models/Transaction.js
 const mongoose = require('mongoose');
 
 const transactionSchema = new mongoose.Schema({
-  user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: false },
+  user: { 
+    type: mongoose.Schema.Types.ObjectId, 
+    ref: 'User', 
+    required: true 
+  }, // Link transaction to user
   type: { type: String, enum: ['income', 'expense'], required: true },
   category: { type: String, required: true },
   amount: { type: Number, required: true },
