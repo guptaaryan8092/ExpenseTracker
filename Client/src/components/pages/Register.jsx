@@ -13,6 +13,7 @@ const Register = () => {
 
   const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 
+
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
@@ -22,6 +23,11 @@ const Register = () => {
     
     if (form.password !== form.confirmPassword) {
       setMsg('Passwords do not match');
+      return;
+    }
+
+    if (form.password.length < 3) {
+      setMsg('Password must be at least 3 characters long');
       return;
     }
 
@@ -39,17 +45,45 @@ const Register = () => {
         }),
       });
 
-      const data = await response.json();
+      // Get response text first (this works for both JSON and HTML)
+      const responseText = await response.text();
       
       if (response.ok) {
-        setMsg('Account created successfully! Redirecting to login...');
-        setTimeout(() => navigate('/login'), 2000);
+        // Try to parse as JSON, but handle if it's not
+        try {
+          const data = JSON.parse(responseText);
+          setMsg('Account created successfully! Redirecting to login...');
+          setTimeout(() => navigate('/login'), 2000);
+        } catch {
+          // Even if not JSON, if status is OK, consider it successful
+          setMsg('Account created successfully! Redirecting to login...');
+          setTimeout(() => navigate('/login'), 2000);
+        }
       } else {
-        setMsg(data.msg || 'Registration failed');
+        // Handle error responses
+        let errorMessage = 'Registration failed';
+        
+        try {
+          const data = JSON.parse(responseText);
+          errorMessage = data.msg || data.message || errorMessage;
+        } catch {
+          // If response is HTML (like error page), extract meaningful message
+          console.error('Server error response:', responseText);
+          
+          if (response.status === 500) {
+            errorMessage = 'Server error. The backend may have an issue.';
+          } else if (response.status === 400) {
+            errorMessage = 'Invalid registration data.';
+          } else {
+            errorMessage = `Registration failed (${response.status})`;
+          }
+        }
+        
+        setMsg(errorMessage);
       }
     } catch (err) {
-      setMsg('Registration failed. Please try again.');
       console.error('Registration error:', err);
+      setMsg('Network error. Check if the backend is running.');
     } finally {
       setLoading(false);
     }
@@ -97,6 +131,7 @@ const Register = () => {
                   type="text"
                   name="username"
                   required
+                  minLength={3}
                   value={form.username}
                   onChange={handleChange}
                   className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
@@ -115,6 +150,7 @@ const Register = () => {
                   type={showPassword ? "text" : "password"}
                   name="password"
                   required
+                  minLength={3}
                   value={form.password}
                   onChange={handleChange}
                   className="w-full pl-10 pr-12 py-3 border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
