@@ -1,4 +1,4 @@
-// server.js
+// server.js - COMPLETE FILE
 const express = require('express');
 const dotenv = require('dotenv');
 const cors = require('cors');
@@ -11,28 +11,21 @@ connectDB();
 
 const app = express();
 
-// CORS configuration with frontend URL
+// CORS configuration
 const corsOptions = {
-  origin: process.env.FRONTEND_URL || [
+  origin: [
     'http://localhost:3000',
     'http://localhost:5173',
+    'http://localhost:5174',
     'https://wealthwavetracker.vercel.app',
+    'https://wealth-wave-tracker.vercel.app',
     process.env.FRONTEND_URL
-],
+  ].filter(Boolean),
   credentials: true,
   optionsSuccessStatus: 200,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
 };
-// Temporary fix for development - NOT recommended for production
-const corsOptions = {
-  origin: true, // This allows all origins
-  credentials: true,
-  optionsSuccessStatus: 200,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization']
-};
-
 
 app.use(cors(corsOptions));
 app.use(express.json());
