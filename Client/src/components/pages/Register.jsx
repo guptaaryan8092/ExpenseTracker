@@ -110,7 +110,7 @@ const Register = () => {
             Create your account
           </h2>
           <p className="mt-2 text-gray-600 dark:text-gray-400">
-            Join WealthWave and start managing your finances
+            Join FinanceFlow and start managing your finances
           </p>
         </div>
 

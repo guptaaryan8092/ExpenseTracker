@@ -19,7 +19,7 @@ const Footer = () => {
                 <span className="text-white font-bold text-xl">₹</span>
               </div>
               <span className="font-bold text-2xl bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                WealthWave
+                Finance Flow
               </span>
             </div>
             <p className="text-gray-600 dark:text-gray-400 mb-4 max-w-md">
@@ -30,7 +30,7 @@ const Footer = () => {
               <SocialLink href="https://github.com" icon={<Github size={20} />} />
               <SocialLink href="https://linkedin.com" icon={<Linkedin size={20} />} />
               <SocialLink href="https://twitter.com" icon={<Twitter size={20} />} />
-              <SocialLink href="mailto:contact@wealthwave.com" icon={<Mail size={20} />} />
+              <SocialLink href="mailto:guptaaryan8092@gmail.com" icon={<Mail size={20} />} />
             </div>
           </div>
 
@@ -60,7 +60,7 @@ const Footer = () => {
         {/* Bottom Section */}
         <div className="border-t border-gray-200 dark:border-gray-700 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-gray-500 dark:text-gray-400 text-sm">
-            © 2025 WealthWave. All rights reserved.
+            © 2025 FinanceFlow. All rights reserved.
           </p>
           <div className="flex items-center space-x-1 text-gray-500 dark:text-gray-400 text-sm mt-4 md:mt-0">
             <span>Made with</span>

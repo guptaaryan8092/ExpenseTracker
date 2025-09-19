@@ -19,6 +19,7 @@ const corsOptions = {
     'http://localhost:5174',
     'https://wealthwavetracker.vercel.app',
     'https://wealth-wave-tracker.vercel.app',
+    'https://financeflowtracker.vercel.app',
     process.env.FRONTEND_URL
   ].filter(Boolean),
   credentials: true,
@@ -32,7 +33,7 @@ app.use(express.json());
 
 // Health check route
 app.get('/', (req, res) => {
-  res.json({ message: 'Wealth Wave Tracker API is running!' });
+  res.json({ message: 'FinanceFlow Tracker API is running!' });
 });
 
 app.use('/api/transactions', transactionRoutes);
